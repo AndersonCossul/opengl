@@ -1,14 +1,20 @@
-/*
-"Hello Triangle". Just the basics + shaders + 2 buffers
-Dependencies:
-GLEW and GLFW3 to start GL.
-Based on OpenGL 4 Example Code.
-*/
-
-#include "gl_utils.h"		// utility stuff discussed in previous tutorials is here
+/******************************************************************************\
+| OpenGL 4 Example Code.                                                       |
+| Accompanies written series "Anton's OpenGL 4 Tutorials"                      |
+| Email: anton at antongerdelan dot net                                        |
+| First version 27 Jan 2014                                                    |
+| Copyright Dr Anton Gerdelan, Trinity College Dublin, Ireland.                |
+| See individual libraries for separate legal notices                          |
+|******************************************************************************|
+| Matrices and Vectors                                                         |
+| Note: code discussed in previous tutorials is moved into gl_utils file       |
+| On Apple don't forget to uncomment the version number hint in start_gl()     |
+\******************************************************************************/
+#include "gl_utils.h"		// utility functions discussed in earlier tutorials
 #include <GL/glew.h>		// include GLEW and new version of GL on Windows
 #include <GLFW/glfw3.h> // GLFW helper library
 #include <assert.h>
+#include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,9 +29,8 @@ GLFWwindow *g_window = NULL;
 
 int main() {
 	restart_gl_log();
-	// all the start-up code for GLFW and GLEW is called here
+	// all the GLFW and GLEW start-up code is moved to here in gl_utils.cpp
 	start_gl();
-
 	// tell GL to only draw onto a pixel if the shape is closer to the viewer
 	glEnable( GL_DEPTH_TEST ); // enable depth-testing
 	glDepthFunc( GL_LESS );		 // depth-testing interprets a smaller value as "closer"
@@ -40,20 +45,11 @@ int main() {
 	glBindBuffer( GL_ARRAY_BUFFER, points_vbo );
 	glBufferData( GL_ARRAY_BUFFER, 9 * sizeof( GLfloat ), points, GL_STATIC_DRAW );
 
-	/* create a second VBO, containing the array of colours.
-	note that we could also put them both into a single vertex buffer. in this
-	case we would use the pointer and stride parameters of glVertexAttribPointer()
-	to describe the different data layouts */
 	GLuint colours_vbo;
 	glGenBuffers( 1, &colours_vbo );
 	glBindBuffer( GL_ARRAY_BUFFER, colours_vbo );
 	glBufferData( GL_ARRAY_BUFFER, 9 * sizeof( GLfloat ), colours, GL_STATIC_DRAW );
 
-	/* create the VAO.
-	we bind each VBO in turn, and call glVertexAttribPointer() to indicate where
-	the memory should be fetched for vertex shader input variables 0, and 1,
-	respectively. we also have to explicitly enable both 'attribute' variables.
-	'attribute' is the older name for vertex shader 'in' variables. */
 	GLuint vao;
 	glGenVertexArrays( 1, &vao );
 	glBindVertexArray( vao );
@@ -109,17 +105,54 @@ int main() {
 		return false;
 	}
 
+	GLfloat matrix[] = {
+		1.0f, 0.0f, 0.0f, 0.0f, // first column
+		0.0f, 1.0f, 0.0f, 0.0f, // second column
+		0.0f, 0.0f, 1.0f, 0.0f, // third column
+		0.5f, 0.0f, 0.0f, 1.0f	// fourth column
+	};
+
+	int matrix_location = glGetUniformLocation( shader_programme, "matrix" );
+	glUseProgram( shader_programme );
+	glUniformMatrix4fv( matrix_location, 1, GL_FALSE, matrix );
+
 	glEnable( GL_CULL_FACE ); // cull face
 	glCullFace( GL_BACK );		// cull back face
 	glFrontFace( GL_CW );			// GL_CCW for counter clock-wise
 
+	float speed = 1.0f; // move at 1 unit per second
+	float last_position = 0.0f;
 	while ( !glfwWindowShouldClose( g_window ) ) {
+		// add a timer for doing animation
+		static double previous_seconds = glfwGetTime();
+		double current_seconds = glfwGetTime();
+		double elapsed_seconds = current_seconds - previous_seconds;
+		previous_seconds = current_seconds;
+
 		_update_fps_counter( g_window );
 		// wipe the drawing surface clear
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 		glViewport( 0, 0, g_gl_width, g_gl_height );
 
+		//
+		// Note: this call is not necessary, but I like to do it anyway before any
+		// time that I call glDrawArrays() so I never use the wrong shader programme
 		glUseProgram( shader_programme );
+
+		// update the matrix
+		// - you could simplify this by just using sin(current_seconds)
+		matrix[12] = elapsed_seconds * speed + last_position;
+		last_position = matrix[12];
+		if ( fabs( last_position ) > 1.0 ) {
+			speed = -speed;
+		}
+		//
+		// Note: this call is related to the most recently 'used' shader programme
+		glUniformMatrix4fv( matrix_location, 1, GL_FALSE, matrix );
+
+		//
+		// Note: this call is not necessary, but I like to do it anyway before any
+		// time that I call glDrawArrays() so I never use the wrong vertex data
 		glBindVertexArray( vao );
 		// draw points 0-3 from the currently bound VAO with current in-use shader
 		glDrawArrays( GL_TRIANGLES, 0, 3 );
