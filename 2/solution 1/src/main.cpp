@@ -31,14 +31,23 @@ int main() {
 	glDepthFunc( GL_LESS );		 // depth-testing interprets a smaller value as "closer"
 
 	/* OTHER STUFF GOES HERE NEXT */
-	GLfloat points[] = { 0.0f, 0.5f, 0.0f, 0.5f, -0.5f, 0.0f, -0.5f, -0.5f, 0.0f };
+	// sequência é topo, direita, esquerda
+	GLfloat points[] = 
+	{ 
+		-0.9f, 0.5f, 0.0f,		-0.3f, 0.5f, 0.0f,	 		-0.6f, -0.1f, 0.0f, // ESQUERDA, DIREITA, BAIXO,
+		-0.3f, 0.5f, 0.0f,		0.0f, -0.1f, 0.0f,	 		-0.6f, -0.1f, 0.0f, // TOPO, DIREITA, ESQUERDA
+	};
 
-	GLfloat colours[] = { 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat colours[] = 
+	{ 
+		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f ,
+		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f
+	};
 
 	GLuint points_vbo;
 	glGenBuffers( 1, &points_vbo );
 	glBindBuffer( GL_ARRAY_BUFFER, points_vbo );
-	glBufferData( GL_ARRAY_BUFFER, 9 * sizeof( GLfloat ), points, GL_STATIC_DRAW );
+	glBufferData( GL_ARRAY_BUFFER, sizeof(points) * sizeof( GLfloat ), points, GL_STATIC_DRAW );
 
 	/* create a second VBO, containing the array of colours.
 	note that we could also put them both into a single vertex buffer. in this
@@ -47,7 +56,7 @@ int main() {
 	GLuint colours_vbo;
 	glGenBuffers( 1, &colours_vbo );
 	glBindBuffer( GL_ARRAY_BUFFER, colours_vbo );
-	glBufferData( GL_ARRAY_BUFFER, 9 * sizeof( GLfloat ), colours, GL_STATIC_DRAW );
+	glBufferData( GL_ARRAY_BUFFER, sizeof(colours) * sizeof( GLfloat ), colours, GL_STATIC_DRAW );
 
 	/* create the VAO.
 	we bind each VBO in turn, and call glVertexAttribPointer() to indicate where
@@ -122,7 +131,8 @@ int main() {
 		glUseProgram( shader_programme );
 		glBindVertexArray( vao );
 		// draw points 0-3 from the currently bound VAO with current in-use shader
-		glDrawArrays( GL_TRIANGLES, 0, 3 );
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 3, 3);
 		// update other events like input handling
 		glfwPollEvents();
 		if ( GLFW_PRESS == glfwGetKey( g_window, GLFW_KEY_ESCAPE ) ) {
