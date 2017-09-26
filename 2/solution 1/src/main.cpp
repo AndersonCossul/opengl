@@ -31,17 +31,22 @@ int main() {
 	glDepthFunc( GL_LESS );		 // depth-testing interprets a smaller value as "closer"
 
 	/* OTHER STUFF GOES HERE NEXT */
-	// sequência é topo, direita, esquerda
 	GLfloat points[] = 
 	{ 
-		-0.9f, 0.5f, 0.0f,		-0.3f, 0.5f, 0.0f,	 		-0.6f, -0.1f, 0.0f, // ESQUERDA, DIREITA, BAIXO,
+		-0.9f, 0.5f, 0.0f,		-0.3f, 0.5f, 0.0f,	 		-0.6f, -0.1f, 0.0f, // ESQUERDA, DIREITA, BAIXO
 		-0.3f, 0.5f, 0.0f,		0.0f, -0.1f, 0.0f,	 		-0.6f, -0.1f, 0.0f, // TOPO, DIREITA, ESQUERDA
+		-0.3f, 0.5f, 0.0f,		0.3f, 0.5f, 0.0f,	 		0.0f, -0.1f, 0.0f, // ESQUERDA, DIREITA, BAIXO
+		0.3f, 0.5f, 0.0f,		0.6f, -0.1f, 0.0f,	 		0.0f, -0.1f, 0.0f, // TOPO, DIREITA, ESQUERDA
+		0.3f, 0.5f, 0.0f,		0.9f, 0.5f, 0.0f,	 		0.6f, -0.1f, 0.0f // ESQUERDA, DIREITA, BAIXO
 	};
 
 	GLfloat colours[] = 
 	{ 
-		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f ,
-		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f
+		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f,
+		0.0f, 1.0f, 0.0f,		0.0f, 1.0f, 0.0f,		0.0f, 1.0f, 0.0f,
+		1.0f, 0.0f, 1.0f,		1.0f, 0.0f, 1.0f,		1.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 1.0f,		0.0f, 0.0f, 1.0f,		0.0f, 0.0f, 1.0f
 	};
 
 	GLuint points_vbo;
@@ -133,6 +138,9 @@ int main() {
 		// draw points 0-3 from the currently bound VAO with current in-use shader
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glDrawArrays(GL_TRIANGLES, 3, 3);
+		glDrawArrays(GL_TRIANGLES, 6, 3);
+		glDrawArrays(GL_TRIANGLES, 9, 3);
+		glDrawArrays(GL_TRIANGLES, 12, 3);
 		// update other events like input handling
 		glfwPollEvents();
 		if ( GLFW_PRESS == glfwGetKey( g_window, GLFW_KEY_ESCAPE ) ) {
