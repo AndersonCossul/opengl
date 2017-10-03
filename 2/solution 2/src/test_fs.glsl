@@ -1,8 +1,11 @@
-#version 410
+#version 330 core
+out vec4 FragColor;
 
-in vec3 colour;
-out vec4 frag_colour;
+in vec3 ourColor;
 
-void main() {
-	frag_colour = vec4 (colour, 1.0);
+// texture sampler
+
+void main()
+{
+	FragColor = vec4(ourColor, 1.0f);
 }
