@@ -70,7 +70,7 @@ bool gl_log_err( const char *message, ... ) {
 }
 
 /*--------------------------------GLFW3 and GLEW------------------------------*/
-bool start_gl() {
+bool start_gl(const char *title) {
 	gl_log( "starting GLFW %s", glfwGetVersionString() );
 
 	glfwSetErrorCallback( glfw_error_callback );
@@ -82,8 +82,8 @@ bool start_gl() {
 /* We must specify 3.2 core if on Apple OS X -- other O/S can specify
  anything here. I defined 'APPLE' in the makefile for OS X */
 #ifdef APPLE
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 3 );
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 2 );
+	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
+	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 1 );
 	glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE );
 	glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 #endif
@@ -95,13 +95,14 @@ bool start_gl() {
 	);*/
 
 	g_window =
-		glfwCreateWindow( g_gl_width, g_gl_height, "Extended Init.", NULL, NULL );
+		glfwCreateWindow( g_gl_width, g_gl_height,title, NULL, NULL );
 	if ( !g_window ) {
 		fprintf( stderr, "ERROR: could not open window with GLFW3\n" );
 		glfwTerminate();
 		return false;
 	}
-	glfwSetWindowSizeCallback( g_window, glfw_window_size_callback );
+	//glfwSetWindowSizeCallback( g_window, glfw_window_size_callback );
+        glfwSetFramebufferSizeCallback(g_window, glfw_window_size_callback);
 	glfwMakeContextCurrent( g_window );
 
 	glfwWindowHint( GLFW_SAMPLES, 4 );
@@ -149,25 +150,30 @@ void _update_fps_counter( GLFWwindow *window ) {
 }
 
 /*-----------------------------------SHADERS----------------------------------*/
-/* copy a shader from a plain text file into a character array */
 bool parse_file_into_str( const char *file_name, char *shader_str, int max_len ) {
+	shader_str[0] = '\0'; // reset string
 	FILE *file = fopen( file_name, "r" );
 	if ( !file ) {
 		gl_log_err( "ERROR: opening file for reading: %s\n", file_name );
 		return false;
 	}
-	size_t cnt = fread( shader_str, 1, max_len - 1, file );
-	if ( (int)cnt >= max_len - 1 ) {
-		gl_log_err( "WARNING: file %s too big - truncated.\n", file_name );
+	int current_len = 0;
+	char line[2048];
+	strcpy( line, "" ); // remember to clean up before using for first time!
+	while ( !feof( file ) ) {
+		if ( NULL != fgets( line, 2048, file ) ) {
+			current_len += strlen( line ); // +1 for \n at end
+			if ( current_len >= max_len ) {
+				gl_log_err( "ERROR: shader length is longer than string buffer length %i\n",
+										max_len );
+			}
+			strcat( shader_str, line );
+		}
 	}
-	if ( ferror( file ) ) {
-		gl_log_err( "ERROR: reading shader file %s\n", file_name );
-		fclose( file );
+	if ( EOF == fclose( file ) ) { // probably unnecesssary validation
+		gl_log_err( "ERROR: closing file from reading %s\n", file_name );
 		return false;
 	}
-	// append \0 to end of file string
-	shader_str[cnt] = 0;
-	fclose( file );
 	return true;
 }
 
@@ -245,8 +251,7 @@ bool create_programme( GLuint vert, GLuint frag, GLuint *programme ) {
 	return true;
 }
 
-GLuint create_programme_from_files( const char *vert_file_name,
-																		const char *frag_file_name ) {
+GLuint create_programme_from_files( const char *vert_file_name, const char *frag_file_name ) {
 	GLuint vert, frag, programme;
 	( create_shader( vert_file_name, &vert, GL_VERTEX_SHADER ) );
 	( create_shader( frag_file_name, &frag, GL_FRAGMENT_SHADER ) );
