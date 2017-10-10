@@ -308,6 +308,11 @@ int main() {
 			&& vertices[198] == 0.0f && vertices[199] == 0.6f
 			&& vertices[230] == 0.3f && vertices[231] == 0.6f) {
 
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+			// put the stuff we've been drawing onto the display
+			glfwSwapBuffers(g_window);
+
 			int msgboxID = MessageBox(
 				NULL,
 				(LPCWSTR)L"Parabéns!\nVocê conseguiu resolver o quebra-cabeça.",
@@ -316,6 +321,8 @@ int main() {
 			);
 
 			glfwSetWindowShouldClose(g_window, 1);
+
+			return 0;
 		}
 
 		if ( GLFW_PRESS == glfwGetKey( g_window, GLFW_KEY_ESCAPE ) ) {
