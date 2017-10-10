@@ -151,7 +151,7 @@ int main() {
 	data = stbi_load("image-2.png", &width, &height, &nrChannels, 0);
 	if (data)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
@@ -161,7 +161,7 @@ int main() {
 	stbi_image_free(data);
 
 	// image 3
-	unsigned int texture3;
+	/*unsigned int texture3;
 	glGenTextures(1, &texture3);
 	glBindTexture(GL_TEXTURE_2D, texture3);
 
@@ -182,6 +182,7 @@ int main() {
 		std::cout << "Failed to load texture" << std::endl;
 	}
 	stbi_image_free(data);
+	*/
 
 	glEnable( GL_CULL_FACE ); // cull face
 	glCullFace( GL_BACK );		// cull back face
@@ -196,10 +197,11 @@ int main() {
 		// bind Texture
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture1);
+		glUniform1i(glGetUniformLocation(shader_programme, "texture1"), 0);
+
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture2);
-		glActiveTexture(GL_TEXTURE2);
-		glBindTexture(GL_TEXTURE_2D, texture3);
+		glUniform1i(glGetUniformLocation(shader_programme, "texture2"), 1);
 
 		//
 		// Note: this call is not necessary, but I like to do it anyway before any

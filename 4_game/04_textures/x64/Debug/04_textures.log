@@ -1,0 +1,151 @@
+﻿gl_utils.obj : error LNK2019: unresolved external symbol _Init_thread_header referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol _Init_thread_footer referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwInit referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+main.obj : error LNK2001: unresolved external symbol glfwTerminate
+gl_utils.obj : error LNK2019: unresolved external symbol glfwGetVersionString referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwSetErrorCallback referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwSetWindowTitle referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwSetFramebufferSizeCallback referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwGetTime referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "bool __cdecl start_gl(char const *)" (?start_gl@@YA_NPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol __imp___acrt_iob_func referenced in function "bool __cdecl gl_log(char const *,...)" (?gl_log@@YA_NPEBDZZ)
+main.obj : error LNK2001: unresolved external symbol __imp___acrt_iob_func
+maths_funcs.obj : error LNK2001: unresolved external symbol __imp___acrt_iob_func
+gl_utils.obj : error LNK2019: unresolved external symbol __imp_fclose referenced in function "bool __cdecl gl_log(char const *,...)" (?gl_log@@YA_NPEBDZZ)
+stb_image.obj : error LNK2001: unresolved external symbol __imp_fclose
+gl_utils.obj : error LNK2019: unresolved external symbol __imp_feof referenced in function "bool __cdecl parse_file_into_str(char const *,char *,int)" (?parse_file_into_str@@YA_NPEBDPEADH@Z)
+stb_image.obj : error LNK2001: unresolved external symbol __imp_feof
+gl_utils.obj : error LNK2019: unresolved external symbol __imp_fgets referenced in function "bool __cdecl parse_file_into_str(char const *,char *,int)" (?parse_file_into_str@@YA_NPEBDPEADH@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol __imp_fopen referenced in function "bool __cdecl gl_log(char const *,...)" (?gl_log@@YA_NPEBDZZ)
+stb_image.obj : error LNK2001: unresolved external symbol __imp_fopen
+gl_utils.obj : error LNK2019: unresolved external symbol __imp_fputs referenced in function "void __cdecl glfw_error_callback(int,char const *)" (?glfw_error_callback@@YAXHPEBD@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol __imp___stdio_common_vfprintf referenced in function _vfprintf_l
+main.obj : error LNK2001: unresolved external symbol __imp___stdio_common_vfprintf
+maths_funcs.obj : error LNK2001: unresolved external symbol __imp___stdio_common_vfprintf
+gl_utils.obj : error LNK2019: unresolved external symbol __imp___stdio_common_vsprintf referenced in function _vsnprintf_l
+gl_utils.obj : error LNK2019: unresolved external symbol strcat referenced in function "bool __cdecl parse_file_into_str(char const *,char *,int)" (?parse_file_into_str@@YA_NPEBDPEADH@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol strcpy referenced in function "bool __cdecl parse_file_into_str(char const *,char *,int)" (?parse_file_into_str@@YA_NPEBDPEADH@Z)
+gl_utils.obj : error LNK2019: unresolved external symbol strlen referenced in function "bool __cdecl parse_file_into_str(char const *,char *,int)" (?parse_file_into_str@@YA_NPEBDPEADH@Z)
+main.obj : error LNK2001: unresolved external symbol strlen
+gl_utils.obj : error LNK2019: unresolved external symbol __imp__ctime64 referenced in function ctime
+gl_utils.obj : error LNK2019: unresolved external symbol __imp__time64 referenced in function time
+gl_utils.obj : error LNK2019: unresolved external symbol _RTC_CheckStackVars referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+main.obj : error LNK2001: unresolved external symbol _RTC_CheckStackVars
+maths_funcs.obj : error LNK2001: unresolved external symbol _RTC_CheckStackVars
+stb_image.obj : error LNK2001: unresolved external symbol _RTC_CheckStackVars
+gl_utils.obj : error LNK2001: unresolved external symbol _RTC_InitBase
+main.obj : error LNK2001: unresolved external symbol _RTC_InitBase
+maths_funcs.obj : error LNK2001: unresolved external symbol _RTC_InitBase
+stb_image.obj : error LNK2001: unresolved external symbol _RTC_InitBase
+gl_utils.obj : error LNK2001: unresolved external symbol _RTC_Shutdown
+main.obj : error LNK2001: unresolved external symbol _RTC_Shutdown
+maths_funcs.obj : error LNK2001: unresolved external symbol _RTC_Shutdown
+stb_image.obj : error LNK2001: unresolved external symbol _RTC_Shutdown
+gl_utils.obj : error LNK2001: unresolved external symbol __GSHandlerCheck
+main.obj : error LNK2001: unresolved external symbol __GSHandlerCheck
+maths_funcs.obj : error LNK2001: unresolved external symbol __GSHandlerCheck
+stb_image.obj : error LNK2001: unresolved external symbol __GSHandlerCheck
+gl_utils.obj : error LNK2019: unresolved external symbol __chkstk referenced in function "bool __cdecl create_shader(char const *,unsigned int *,unsigned int)" (?create_shader@@YA_NPEBDPEAII@Z)
+main.obj : error LNK2001: unresolved external symbol __chkstk
+stb_image.obj : error LNK2001: unresolved external symbol __chkstk
+gl_utils.obj : error LNK2019: unresolved external symbol __security_check_cookie referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+main.obj : error LNK2001: unresolved external symbol __security_check_cookie
+maths_funcs.obj : error LNK2001: unresolved external symbol __security_check_cookie
+stb_image.obj : error LNK2001: unresolved external symbol __security_check_cookie
+gl_utils.obj : error LNK2001: unresolved external symbol _Init_thread_epoch
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+main.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+main.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+main.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+main.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramInfoLog
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+main.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+main.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+main.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+main.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+gl_utils.obj : error LNK2001: unresolved external symbol __imp___glewValidateProgram
+gl_utils.obj : error LNK2001: unresolved external symbol __imp_glewExperimental
+gl_utils.obj : error LNK2019: unresolved external symbol __security_cookie referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+main.obj : error LNK2001: unresolved external symbol __security_cookie
+maths_funcs.obj : error LNK2001: unresolved external symbol __security_cookie
+stb_image.obj : error LNK2001: unresolved external symbol __security_cookie
+gl_utils.obj : error LNK2001: unresolved external symbol _fltused
+main.obj : error LNK2001: unresolved external symbol _fltused
+maths_funcs.obj : error LNK2001: unresolved external symbol _fltused
+stb_image.obj : error LNK2001: unresolved external symbol _fltused
+gl_utils.obj : error LNK2019: unresolved external symbol _tls_index referenced in function "void __cdecl _update_fps_counter(struct GLFWwindow *)" (?_update_fps_counter@@YAXPEAUGLFWwindow@@@Z)
+main.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwGetKey referenced in function main
+main.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function main
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) bool __cdecl std::uncaught_exception(void)" (__imp_?uncaught_exception@std@@YA_NXZ) referenced in function "public: __cdecl std::basic_ostream<char,struct std::char_traits<char> >::sentry::~sentry(void)" (??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: bool __cdecl std::ios_base::good(void)const " (__imp_?good@ios_base@std@@QEBA_NXZ) referenced in function "public: __cdecl std::basic_ostream<char,struct std::char_traits<char> >::sentry::sentry(class std::basic_ostream<char,struct std::char_traits<char> > &)" (??0sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@AEAV12@@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: int __cdecl std::ios_base::flags(void)const " (__imp_?flags@ios_base@std@@QEBAHXZ) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __int64 __cdecl std::ios_base::width(void)const " (__imp_?width@ios_base@std@@QEBA_JXZ) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __int64 __cdecl std::ios_base::width(__int64)" (__imp_?width@ios_base@std@@QEAA_J_J@Z) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: int __cdecl std::basic_streambuf<char,struct std::char_traits<char> >::sputc(char)" (__imp_?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHD@Z) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __int64 __cdecl std::basic_streambuf<char,struct std::char_traits<char> >::sputn(char const *,__int64)" (__imp_?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAA_JPEBD_J@Z) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl std::basic_ios<char,struct std::char_traits<char> >::setstate(int,bool)" (__imp_?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class std::basic_ostream<char,struct std::char_traits<char> > * __cdecl std::basic_ios<char,struct std::char_traits<char> >::tie(void)const " (__imp_?tie@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_ostream@DU?$char_traits@D@std@@@2@XZ) referenced in function "public: __cdecl std::basic_ostream<char,struct std::char_traits<char> >::sentry::sentry(class std::basic_ostream<char,struct std::char_traits<char> > &)" (??0sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@AEAV12@@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class std::basic_streambuf<char,struct std::char_traits<char> > * __cdecl std::basic_ios<char,struct std::char_traits<char> >::rdbuf(void)const " (__imp_?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: char __cdecl std::basic_ios<char,struct std::char_traits<char> >::fill(void)const " (__imp_?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADXZ) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::operator<<<struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &,char const *)" (??$?6U?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@PEBD@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: char __cdecl std::basic_ios<char,struct std::char_traits<char> >::widen(char)const " (__imp_?widen@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADD@Z) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl<char,struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &)" (??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl std::basic_ostream<char,struct std::char_traits<char> >::_Osfx(void)" (__imp_?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ) referenced in function "public: __cdecl std::basic_ostream<char,struct std::char_traits<char> >::sentry::~sentry(void)" (??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@XZ)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::basic_ostream<char,struct std::char_traits<char> >::operator<<(class std::basic_ostream<char,struct std::char_traits<char> > & (__cdecl*)(class std::basic_ostream<char,struct std::char_traits<char> > &))" (__imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::basic_ostream<char,struct std::char_traits<char> >::put(char)" (__imp_?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl<char,struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &)" (??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z)
+main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::basic_ostream<char,struct std::char_traits<char> >::flush(void)" (__imp_?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ) referenced in function "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl<char,struct std::char_traits<char> >(class std::basic_ostream<char,struct std::char_traits<char> > &)" (??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z)
+main.obj : error LNK2001: unresolved external symbol __CxxFrameHandler3
+main.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+main.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+main.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+main.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+main.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+main.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+main.obj : error LNK2001: unresolved external symbol __imp___glewGenerateMipmap
+main.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+main.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > std::cout" (__imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A)
+maths_funcs.obj : error LNK2019: unresolved external symbol acos referenced in function "struct versor __cdecl slerp(struct versor &,struct versor &,float)" (?slerp@@YA?AUversor@@AEAU1@0M@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol atan2 referenced in function "float __cdecl direction_to_heading(struct vec3)" (?direction_to_heading@@YAMUvec3@@@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol cos referenced in function "struct versor __cdecl quat_from_axis_rad(float,float,float,float)" (?quat_from_axis_rad@@YA?AUversor@@MMMM@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol fabs referenced in function "struct versor __cdecl normalise(struct versor &)" (?normalise@@YA?AUversor@@AEAU1@@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol sin referenced in function "struct versor __cdecl quat_from_axis_rad(float,float,float,float)" (?quat_from_axis_rad@@YA?AUversor@@MMMM@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol sqrt referenced in function "float __cdecl length(struct vec3 const &)" (?length@@YAMAEBUvec3@@@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol tan referenced in function "struct mat4 __cdecl perspective(float,float,float,float)" (?perspective@@YA?AUmat4@@MMMM@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol __imp_cosf referenced in function "struct vec3 __cdecl heading_to_direction(float)" (?heading_to_direction@@YA?AUvec3@@M@Z)
+maths_funcs.obj : error LNK2019: unresolved external symbol __imp_sinf referenced in function "struct vec3 __cdecl heading_to_direction(float)" (?heading_to_direction@@YA?AUvec3@@M@Z)
+stb_image.obj : error LNK2019: unresolved external symbol __report_rangecheckfailure referenced in function tga_load
+stb_image.obj : error LNK2019: unresolved external symbol __imp_fread referenced in function stdio_read
+stb_image.obj : error LNK2019: unresolved external symbol __imp_fseek referenced in function stdio_skip
+stb_image.obj : error LNK2019: unresolved external symbol __imp_ftell referenced in function stbi_info_from_file
+stb_image.obj : error LNK2019: unresolved external symbol abs referenced in function bmp_load
+stb_image.obj : error LNK2019: unresolved external symbol pow referenced in function hdr_to_ldr
+stb_image.obj : error LNK2019: unresolved external symbol __imp_ldexp referenced in function hdr_convert
+stb_image.obj : error LNK2019: unresolved external symbol memcpy referenced in function create_png_image
+stb_image.obj : error LNK2019: unresolved external symbol memset referenced in function build_huffman
+stb_image.obj : error LNK2019: unresolved external symbol strcmp referenced in function hdr_load
+stb_image.obj : error LNK2019: unresolved external symbol __imp_strncmp referenced in function hdr_load
+stb_image.obj : error LNK2019: unresolved external symbol __imp__wassert referenced in function bit_reverse
+stb_image.obj : error LNK2019: unresolved external symbol __imp_free referenced in function bmp_load
+stb_image.obj : error LNK2019: unresolved external symbol __imp_malloc referenced in function bmp_load
+stb_image.obj : error LNK2019: unresolved external symbol __imp_realloc referenced in function expand
+stb_image.obj : error LNK2019: unresolved external symbol _lrotl referenced in function extend_receive
+stb_image.obj : error LNK2019: unresolved external symbol __imp_strtol referenced in function hdr_load
+LINK : error LNK2001: unresolved external symbol mainCRTStartup
+..\external\lib\glew.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+..\external\lib\glfw3dll.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+F:\opengl\4_game\04_textures\x64\Debug\04_textures.exe : fatal error LNK1120: 108 unresolved externals
