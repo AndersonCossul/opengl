@@ -190,95 +190,37 @@ int main() {
 		if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_ESCAPE)) {
 			glfwSetWindowShouldClose(g_window, 1);
 		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_LEFT)) {
-			if (pmatrix.m[12] > -1.0f) {
-				move -= 0.1f;
-				pmatrix.m[12] -= 0.1f;
-			}
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_RIGHT)) {
-			if (pmatrix.m[12] < 1.0f) {
-				move += 0.1f;
-				pmatrix.m[12] += 0.1f;
-			}
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_DOWN)) {
-			if (smatrix.m[0] > 0.1f) {
-				scale -= 0.1f;
-				smatrix.m[0] -= 0.1f;
-				smatrix.m[5] -= 0.1f;
-				smatrix.m[10] -= 0.1f;
-			}
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_UP)) {
-			if (smatrix.m[0] < 2.0f) {
-				scale += 0.1f;
-				smatrix.m[0] += 0.1f;
-				smatrix.m[5] += 0.1f;
-				smatrix.m[10] += 0.1f;
-			}
-		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_A)) {
 			angle += 0.1f;
 			if (angle >= 3.14f) {
 				angle = -3.14f;
 			}
+
+
+			pmatrix.m[12] = -0.5f;
+			pmatrix.m[13] = -0.5f;
+
+			/*
 			rmatrix.m[0] = cos(angle);
 			rmatrix.m[1] = sin(angle);
 			rmatrix.m[4] = -sin(angle);
 			rmatrix.m[5] = cos(angle);
+			*/
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_D)) {
 			angle -= 0.1f;
 			if (angle <= -3.14f) {
 				angle = 3.14f;
 			}
-			rmatrix.m[0] = cos(angle);
-			rmatrix.m[1] = sin(angle);
-			rmatrix.m[4] = -sin(angle);
-			rmatrix.m[5] = cos(angle);
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_Q)) {
-			angle += 0.1f;
-			if (angle >= 3.14f) {
-				angle = -3.14f;
-			}
 
-			pmatrix.m[12] = 0.0f;
-
+			pmatrix.m[12] = -0.5f;
+			pmatrix.m[13] = -0.5f;
 			/*
 			rmatrix.m[0] = cos(angle);
 			rmatrix.m[1] = sin(angle);
 			rmatrix.m[4] = -sin(angle);
 			rmatrix.m[5] = cos(angle);
 			*/
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_E)) {
-			angle -= 0.1f;
-			if (angle <= -3.14f) {
-				angle = 3.14f;
-			}
-
-			pmatrix.m[12] = 0.0f;
-			/*
-			rmatrix.m[0] = cos(angle);
-			rmatrix.m[1] = sin(angle);
-			rmatrix.m[4] = -sin(angle);
-			rmatrix.m[5] = cos(angle);
-			*/
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_R)) {
-			angle = 0.0f;
-			move = 0.0f;
-			scale = 0.0f;
-
-			pmatrix.m[12] = 0.0f;
-
-			smatrix.m[0] = 1.0f;
-			smatrix.m[5] = 1.0f;
-			smatrix.m[10] = 1.0f;
-
-
 		}
 		matrix = pmatrix * rmatrix * smatrix;
 		// put the stuff we've been drawing onto the display
