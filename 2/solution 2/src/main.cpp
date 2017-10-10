@@ -41,13 +41,7 @@ int main() {
 		0.6f, -0.1f, 0.0f,   0.0f, 1.0f, 1.0f, // 
 		0.9f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f // 
 	};
-	/*float vertices[] = {
-	// positions          // colors           // texture coords
-	0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-	0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-	-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-	-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
-	};*/
+	
 	unsigned int indices[] = {
 		2, 1, 0, // 1 triangle
 		3, 1, 2, // 2 triangle
@@ -55,6 +49,8 @@ int main() {
 		5, 3, 4, // 4 triangle
 		6, 5, 4 // 4 triangle
 	};
+
+	/* DESSE JEITO GANHA-SE MAIS PERFORMANCE DO QUE VBO, POIS MENOS VÉRTICES SÃO PASSADOS */
 
 	unsigned int VBO, VAO, EBO;
 	glGenVertexArrays(1, &VAO);

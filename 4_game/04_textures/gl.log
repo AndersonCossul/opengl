@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 GL_LOG_FILE log. local time Mon Oct  9 20:23:00 2017
 =======
 GL_LOG_FILE log. local time Mon Oct  9 20:27:17 2017
 >>>>>>> 4cefbaef7f88c34f5e48c25ac74f9db16bf76977
+=======
+GL_LOG_FILE log. local time Mon Oct  9 21:26:35 2017
+>>>>>>> e683142c2ca9b72b0a642c4428a6c6d4f3177677
 
 starting GLFW 3.2.1 Win32 WGL EGL VisualC DLLrenderer: GeForce GTX 460/PCIe/SSE2
 version: 4.5.0 NVIDIA 361.91
