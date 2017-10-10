@@ -126,10 +126,10 @@ int main() {
 		0.3f,   -0.9f,  0.0f,	1.0f, 0.0f, 0.0f,   0.6f, 0.6f, // bottom right
 		-0.3f,  -0.9f,  0.0f,	1.0f, 0.0f, 0.0f,   0.3f, 0.6f,	// bottom left
 		//9
- /*256*/0.3f,  -0.3f,  0.0f,	1.0f, 0.0f, 0.0f,   0.0f, 0.0f,	// top left
-		0.9f,  -0.3f,  0.0f,	1.0f, 0.0f, 0.0f,   0.0f, 0.0f,	// top right
-		0.9f,  -0.9f,  0.0f,	1.0f, 0.0f, 0.0f,   0.0f, 0.0f, // bottom right
-		0.3f,  -0.9f,  0.0f,	1.0f, 0.0f, 0.0f,   0.0f, 0.0f	// bottom left
+ /*256*/0.3f,  -0.3f,  0.0f,	1.0f, 0.0f, 0.0f,   0.5f, 0.5f,	// top left
+		0.9f,  -0.3f,  0.0f,	1.0f, 0.0f, 0.0f,   0.5F, 0.5f,	// top right
+		0.9f,  -0.9f,  0.0f,	1.0f, 0.0f, 0.0f,   0.5f, 0.5f, // bottom right
+		0.3f,  -0.9f,  0.0f,	1.0f, 0.0f, 0.0f,   0.5f, 0.5f	// bottom left
 	};
 
 	float points_square_empty[] = {
@@ -308,6 +308,15 @@ int main() {
 			&& vertices[198] == 0.0f && vertices[199] == 0.6f
 			&& vertices[230] == 0.3f && vertices[231] == 0.6f) {
 
+			vertices[pos_square] = 0.6f;
+			vertices[pos_square + 1] = 0.6f;
+			vertices[pos_square + 8] = 0.6f;
+			vertices[pos_square + 9] = 0.9f;
+			vertices[pos_square + 16] = 0.9f;
+			vertices[pos_square + 17] = 0.9f;
+			vertices[pos_square + 24] = 0.6f;
+			vertices[pos_square + 25] = 0.9f;
+
 			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// put the stuff we've been drawing onto the display
@@ -343,14 +352,14 @@ int main() {
 				float p4_x = vertices[pos_square + 96 + 24];
 				float p4_y = vertices[pos_square + 96 + 25];
 
-				vertices[pos_square + 96] = 0.0f;
-				vertices[pos_square + 96 + 1] = 0.0f;
-				vertices[pos_square + 96 + 8] = 0.0f;
-				vertices[pos_square + 96 + 9] = 0.0f;
-				vertices[pos_square + 96 + 16] = 0.0f;
-				vertices[pos_square + 96 + 17] = 0.0f;
-				vertices[pos_square + 96 + 24] = 0.0f;
-				vertices[pos_square + 96 + 25] = 0.0f;
+				vertices[pos_square + 96] = 0.5f;
+				vertices[pos_square + 96 + 1] = 0.5f;
+				vertices[pos_square + 96 + 8] = 0.5f;
+				vertices[pos_square + 96 + 9] = 0.5f;
+				vertices[pos_square + 96 + 16] = 0.5f;
+				vertices[pos_square + 96 + 17] = 0.5f;
+				vertices[pos_square + 96 + 24] = 0.5f;
+				vertices[pos_square + 96 + 25] = 0.5f;
 
 				vertices[pos_square] = p1_x;
 				vertices[pos_square + 1] = p1_y;
@@ -381,14 +390,14 @@ int main() {
 				float p4_x = vertices[pos_square - 96 + 24];
 				float p4_y = vertices[pos_square - 96 + 25];
 
-				vertices[pos_square - 96] = 0.0f;
-				vertices[pos_square - 96 + 1] = 0.0f;
-				vertices[pos_square - 96 + 8] = 0.0f;
-				vertices[pos_square - 96 + 9] = 0.0f;
-				vertices[pos_square - 96 + 16] = 0.0f;
-				vertices[pos_square - 96 + 17] = 0.0f;
-				vertices[pos_square - 96 + 24] = 0.0f;
-				vertices[pos_square - 96 + 25] = 0.0f;
+				vertices[pos_square - 96] = 0.5f;
+				vertices[pos_square - 96 + 1] = 0.5f;
+				vertices[pos_square - 96 + 8] = 0.5f;
+				vertices[pos_square - 96 + 9] = 0.5f;
+				vertices[pos_square - 96 + 16] = 0.5f;
+				vertices[pos_square - 96 + 17] = 0.5f;
+				vertices[pos_square - 96 + 24] = 0.5f;
+				vertices[pos_square - 96 + 25] = 0.5f;
 
 				vertices[pos_square ] = p1_x;
 				vertices[pos_square + 1] = p1_y;
@@ -419,14 +428,14 @@ int main() {
 				float p4_x = vertices[pos_square + 32 + 24];
 				float p4_y = vertices[pos_square + 32 + 25];
 
-				vertices[pos_square + 32] = 0.0f;
-				vertices[pos_square + 32 + 1] = 0.0f;
-				vertices[pos_square + 32 + 8] = 0.0f;
-				vertices[pos_square + 32 + 9] = 0.0f;
-				vertices[pos_square + 32 + 16] = 0.0f;
-				vertices[pos_square + 32 + 17] = 0.0f;
-				vertices[pos_square + 32 + 24] = 0.0f;
-				vertices[pos_square + 32 + 25] = 0.0f;
+				vertices[pos_square + 32] = 0.5f;
+				vertices[pos_square + 32 + 1] = 0.5f;
+				vertices[pos_square + 32 + 8] = 0.5f;
+				vertices[pos_square + 32 + 9] = 0.5f;
+				vertices[pos_square + 32 + 16] = 0.5f;
+				vertices[pos_square + 32 + 17] = 0.5f;
+				vertices[pos_square + 32 + 24] = 0.5f;
+				vertices[pos_square + 32 + 25] = 0.5f;
 
 				vertices[pos_square] = p1_x;
 				vertices[pos_square + 1] = p1_y;
@@ -458,14 +467,14 @@ int main() {
 				float p4_x = vertices[pos_square - 32 + 24];
 				float p4_y = vertices[pos_square - 32 + 25];
 
-				vertices[pos_square - 32] = 0.0f;
-				vertices[pos_square - 32 + 1] = 0.0f;
-				vertices[pos_square - 32 + 8] = 0.0f;
-				vertices[pos_square - 32 + 9] = 0.0f;
-				vertices[pos_square - 32 + 16] = 0.0f;
-				vertices[pos_square - 32 + 17] = 0.0f;
-				vertices[pos_square - 32 + 24] = 0.0f;
-				vertices[pos_square - 32 + 25] = 0.0f;
+				vertices[pos_square - 32] = 0.5f;
+				vertices[pos_square - 32 + 1] = 0.5f;
+				vertices[pos_square - 32 + 8] = 0.5f;
+				vertices[pos_square - 32 + 9] = 0.5f;
+				vertices[pos_square - 32 + 16] = 0.5f;
+				vertices[pos_square - 32 + 17] = 0.5f;
+				vertices[pos_square - 32 + 24] = 0.5f;
+				vertices[pos_square - 32 + 25] = 0.5f;
 
 				vertices[pos_square] = p1_x;
 				vertices[pos_square + 1] = p1_y;
