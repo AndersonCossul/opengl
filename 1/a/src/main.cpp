@@ -38,9 +38,9 @@ int main() {
 
 								 /* OTHER STUFF GOES HERE NEXT */
 	GLfloat points[] = {
-		1.0f, 1.0f, 0.0f,
-		0.5f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f };
+		0.0f,  0.5f,  0.0f,
+		0.5f,  -0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f };
 
 	GLfloat colours[] = {
 		1.0f, 0.0f, 0.0f,
@@ -187,40 +187,53 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		// update other events like input handling
 		glfwPollEvents();
+
 		if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_ESCAPE)) {
 			glfwSetWindowShouldClose(g_window, 1);
+		}
+		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_LEFT)) {
+			if (pmatrix.m[12] > -1.0) {
+				pmatrix.m[12] -= 0.1;
+			}
+		}
+		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_RIGHT)) {
+			if (pmatrix.m[12] < 1.0) {
+				pmatrix.m[12] += 0.1;
+			}
+		}
+		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_DOWN)) {
+			if (smatrix.m[0] > 0.1) {
+				smatrix.m[0] -= 0.1;
+				smatrix.m[5] -= 0.1;
+				smatrix.m[10] -= 0.1;
+			}
+		}
+		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_UP)) {
+			if (smatrix.m[0] < 2.0) {
+				smatrix.m[0] += 0.1;
+				smatrix.m[5] += 0.1;
+				smatrix.m[10] += 0.1;
+			}
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_A)) {
 			angle += 0.1f;
 			if (angle >= 3.14f) {
 				angle = -3.14f;
 			}
-
-
-			pmatrix.m[12] = -0.5f;
-			pmatrix.m[13] = -0.5f;
-
-			/*
 			rmatrix.m[0] = cos(angle);
 			rmatrix.m[1] = sin(angle);
 			rmatrix.m[4] = -sin(angle);
 			rmatrix.m[5] = cos(angle);
-			*/
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_D)) {
 			angle -= 0.1f;
 			if (angle <= -3.14f) {
 				angle = 3.14f;
 			}
-
-			pmatrix.m[12] = -0.5f;
-			pmatrix.m[13] = -0.5f;
-			/*
 			rmatrix.m[0] = cos(angle);
 			rmatrix.m[1] = sin(angle);
 			rmatrix.m[4] = -sin(angle);
 			rmatrix.m[5] = cos(angle);
-			*/
 		}
 		matrix = pmatrix * rmatrix * smatrix;
 		// put the stuff we've been drawing onto the display
