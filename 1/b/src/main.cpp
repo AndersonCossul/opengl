@@ -11,6 +11,7 @@
 | On Apple don't forget to uncomment the version number hint in start_gl()     |
 \******************************************************************************/
 #include "gl_utils.h"		// utility functions discussed in earlier tutorials
+#include "maths_funcs.h"
 #include <GL/glew.h>		// include GLEW and new version of GL on Windows
 #include <GLFW/glfw3.h> // GLFW helper library
 #include <assert.h>
@@ -36,11 +37,15 @@ int main() {
 	glDepthFunc(GL_LESS);		 // depth-testing interprets a smaller value as "closer"
 
 								 /* OTHER STUFF GOES HERE NEXT */
-	GLfloat points[] = { 0.0f, 0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
+	GLfloat points[] = {
+		0.0f,  0.5f,  0.0f,
+		0.5f,  -0.5f, 0.0f,
 		-0.5f, -0.5f, 0.0f };
 
-	GLfloat colours[] = { 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat colours[] = {
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f };
 
 	GLuint points_vbo;
 	glGenBuffers(1, &points_vbo);
@@ -107,16 +112,45 @@ int main() {
 		return false;
 	}
 
-	GLfloat matrix[] = {
-		1.0f, 0.0f, 0.0f, 0.0f, // first column
-		0.0f, 1.0f, 0.0f, 0.0f, // second column
-		0.0f, 0.0f, 1.0f, 0.0f, // third column
-		0.0f, 0.0f, 0.0f, 1.0f	// fourth column
+	mat4 pmatrix = {
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
 	};
 
-	int matrix_location = glGetUniformLocation(shader_programme, "matrix");
+	/*mat4 rmatrix = {
+	cos(1), 0.0f, sin(1), 0.0f,
+	0.0f, 1.0f, 0.0f, 0.0f,
+	-sin(1), 0.0f, cos(1), 0.0f,
+	0.0f, 0.0f, 0.0f, 1.0f
+	};*/
+
+	mat4 rmatrix = {
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
+	};
+
+	mat4 smatrix = {
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
+	};
+
+	int pmatrix_location = glGetUniformLocation(shader_programme, "pmatrix");
 	glUseProgram(shader_programme);
-	glUniformMatrix4fv(matrix_location, 1, GL_FALSE, matrix);
+	glUniformMatrix4fv(pmatrix_location, 1, GL_FALSE, pmatrix.m);
+
+	int smatrix_location = glGetUniformLocation(shader_programme, "smatrix");
+	glUseProgram(shader_programme);
+	glUniformMatrix4fv(smatrix_location, 1, GL_FALSE, smatrix.m);
+
+	int rmatrix_location = glGetUniformLocation(shader_programme, "rmatrix");
+	glUseProgram(shader_programme);
+	glUniformMatrix4fv(rmatrix_location, 1, GL_FALSE, rmatrix.m);
 
 	glEnable(GL_CULL_FACE); // cull face
 	glCullFace(GL_BACK);		// cull back face
@@ -124,7 +158,7 @@ int main() {
 
 	float speed = 1.0f; // move at 1 unit per second
 	float last_position = 0.0f;
-	float angule = 0.0f;
+	float angle = 0.0f;
 	float move = 0.0f;
 	float scale = 0.0f;
 	while (!glfwWindowShouldClose(g_window)) {
@@ -149,7 +183,9 @@ int main() {
 
 		//
 		// Note: this call is related to the most recently 'used' shader programme
-		glUniformMatrix4fv(matrix_location, 1, GL_FALSE, matrix);
+		glUniformMatrix4fv(pmatrix_location, 1, GL_FALSE, pmatrix.m);
+		glUniformMatrix4fv(smatrix_location, 1, GL_FALSE, smatrix.m);
+		glUniformMatrix4fv(rmatrix_location, 1, GL_FALSE, rmatrix.m);
 
 		//
 		// Note: this call is not necessary, but I like to do it anyway before any
@@ -159,88 +195,53 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		// update other events like input handling
 		glfwPollEvents();
+
 		if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_ESCAPE)) {
 			glfwSetWindowShouldClose(g_window, 1);
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_LEFT)) {
-			if (matrix[12] > -1.0) {
-				move -= 0.1;
-				matrix[12] -= 0.1;
+			if (pmatrix.m[12] > -1.0) {
+				pmatrix.m[12] -= 0.1;
 			}
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_RIGHT)) {
-			if (matrix[12] < 1.0) {
-				move += 0.1;
-				matrix[12] += 0.1;
+			if (pmatrix.m[12] < 1.0) {
+				pmatrix.m[12] += 0.1;
 			}
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_DOWN)) {
-			if (matrix[0] > 0.1) {
-				scale -= 0.1;
-				matrix[0] -= 0.1;
-				matrix[5] -= 0.1;
-				matrix[10] -= 0.1;
+			if (smatrix.m[0] > 0.1) {
+				smatrix.m[0] -= 0.1;
+				smatrix.m[5] -= 0.1;
+				smatrix.m[10] -= 0.1;
 			}
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_UP)) {
-			if (matrix[0] < 2.0) {
-				scale += 0.1;
-				matrix[0] += 0.1;
-				matrix[5] += 0.1;
-				matrix[10] += 0.1;
+			if (smatrix.m[0] < 2.0) {
+				smatrix.m[0] += 0.1;
+				smatrix.m[5] += 0.1;
+				smatrix.m[10] += 0.1;
 			}
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_A)) {
-			angule += 0.1f;
-			matrix[0] = cos(angule) + scale;
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule) + scale;
+			angle += 0.1f;
+			if (angle >= 3.14f) {
+				angle = -3.14f;
+			}
+			rmatrix.m[0] = cos(angle);
+			rmatrix.m[1] = sin(angle);
+			rmatrix.m[4] = -sin(angle);
+			rmatrix.m[5] = cos(angle);
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_D)) {
-			angule -= 0.1f;
-			matrix[0] = cos(angule) + scale;
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule) + scale;
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_Q)) {
-			angule += 0.1f;
-			matrix[0] = 1.0f;
-			matrix[5] = 1.0f;
-			matrix[10] = 1.0f;
-			matrix[12] = 0.0f;
-
-
-			matrix[0] = cos(angule);
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule);
-
-			matrix[0] += scale;
-			matrix[5] += scale;
-			matrix[10] += scale;
-			matrix[12] += move;
-
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_E)) {
-
-			angule -= 0.1f;
-			matrix[0] = 1.0f;
-			matrix[5] = 1.0f;
-			matrix[10] = 1.0f;
-			matrix[12] = 0.0f;
-
-
-			matrix[0] = cos(angule);
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule);
-
-			matrix[0] += scale;
-			matrix[5] += scale;
-			matrix[10] += scale;
-			matrix[12] += move;
+			angle -= 0.1f;
+			if (angle <= -3.14f) {
+				angle = 3.14f;
+			}
+			rmatrix.m[0] = cos(angle);
+			rmatrix.m[1] = sin(angle);
+			rmatrix.m[4] = -sin(angle);
+			rmatrix.m[5] = cos(angle);
 		}
 		// put the stuff we've been drawing onto the display
 		glfwSwapBuffers(g_window);
