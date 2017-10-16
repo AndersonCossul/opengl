@@ -37,5 +37,6 @@
     <None Include="test_vs.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

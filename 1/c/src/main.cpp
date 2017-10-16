@@ -11,6 +11,7 @@
 | On Apple don't forget to uncomment the version number hint in start_gl()     |
 \******************************************************************************/
 #include "gl_utils.h"		// utility functions discussed in earlier tutorials
+#include "maths_funcs.h"
 #include <GL/glew.h>		// include GLEW and new version of GL on Windows
 #include <GLFW/glfw3.h> // GLFW helper library
 #include <assert.h>
@@ -21,7 +22,11 @@
 #include <string.h>
 #include <time.h>
 #define GL_LOG_FILE "gl.log"
-
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4, glm::ivec4
+#include <glm/mat4x4.hpp> // glm::mat4
+#include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 // keep track of window size for things like the viewport and the mouse cursor
 int g_gl_width = 640;
 int g_gl_height = 480;
@@ -36,11 +41,15 @@ int main() {
 	glDepthFunc(GL_LESS);		 // depth-testing interprets a smaller value as "closer"
 
 								 /* OTHER STUFF GOES HERE NEXT */
-	GLfloat points[] = { 0.0f, 0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f };
+	GLfloat points[] = {
+		1.0f, 1.0f, 0.0f,
+		0.5f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f };
 
-	GLfloat colours[] = { 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat colours[] = {
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f };
 
 	GLuint points_vbo;
 	glGenBuffers(1, &points_vbo);
@@ -107,16 +116,14 @@ int main() {
 		return false;
 	}
 
-	GLfloat matrix[] = {
-		1.0f, 0.0f, 0.0f, 0.0f, // first column
-		0.0f, 1.0f, 0.0f, 0.0f, // second column
-		0.0f, 0.0f, 1.0f, 0.0f, // third column
-		0.0f, 0.0f, 0.0f, 1.0f	// fourth column
-	};
+	glm::mat4 trans;
+	//trans = glm::rotate(trans, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
-	int matrix_location = glGetUniformLocation(shader_programme, "matrix");
+	glm::vec4 result = trans * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+
+	GLint uniTrans = glGetUniformLocation(shader_programme, "trans");
 	glUseProgram(shader_programme);
-	glUniformMatrix4fv(matrix_location, 1, GL_FALSE, matrix);
+	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));
 
 	glEnable(GL_CULL_FACE); // cull face
 	glCullFace(GL_BACK);		// cull back face
@@ -124,9 +131,7 @@ int main() {
 
 	float speed = 1.0f; // move at 1 unit per second
 	float last_position = 0.0f;
-	float angule = 0.0f;
-	float move = 0.0f;
-	float scale = 0.0f;
+	float angle = 0.0f;
 	while (!glfwWindowShouldClose(g_window)) {
 		// add a timer for doing animation
 		static double previous_seconds = glfwGetTime();
@@ -149,7 +154,7 @@ int main() {
 
 		//
 		// Note: this call is related to the most recently 'used' shader programme
-		glUniformMatrix4fv(matrix_location, 1, GL_FALSE, matrix);
+		glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));
 
 		//
 		// Note: this call is not necessary, but I like to do it anyway before any
@@ -159,88 +164,37 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		// update other events like input handling
 		glfwPollEvents();
+
 		if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_ESCAPE)) {
 			glfwSetWindowShouldClose(g_window, 1);
 		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_LEFT)) {
-			if (matrix[12] > -1.0) {
-				move -= 0.1;
-				matrix[12] -= 0.1;
-			}
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_RIGHT)) {
-			if (matrix[12] < 1.0) {
-				move += 0.1;
-				matrix[12] += 0.1;
-			}
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_DOWN)) {
-			if (matrix[0] > 0.1) {
-				scale -= 0.1;
-				matrix[0] -= 0.1;
-				matrix[5] -= 0.1;
-				matrix[10] -= 0.1;
-			}
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_UP)) {
-			if (matrix[0] < 2.0) {
-				scale += 0.1;
-				matrix[0] += 0.1;
-				matrix[5] += 0.1;
-				matrix[10] += 0.1;
-			}
-		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_A)) {
-			angule += 0.1f;
-			matrix[0] = cos(angule) + scale;
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule) + scale;
+			trans = glm::translate(
+				trans,
+				glm::vec3(0.5f, 0.5f, 0.0f));
+			trans = glm::rotate(
+				trans,
+				glm::radians(30.0f),
+				glm::vec3(0.0f, 0.0f, 1.0f)
+				);
+			trans = glm::translate(
+				trans,
+				glm::vec3(-0.5f, -0.5f, 0.0f));
+			
 		}
 		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_D)) {
-			angule -= 0.1f;
-			matrix[0] = cos(angule) + scale;
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule) + scale;
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_Q)) {
-			angule += 0.1f;
-			matrix[0] = 1.0f;
-			matrix[5] = 1.0f;
-			matrix[10] = 1.0f;
-			matrix[12] = 0.0f;
-
-
-			matrix[0] = cos(angule);
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule);
-
-			matrix[0] += scale;
-			matrix[5] += scale;
-			matrix[10] += scale;
-			matrix[12] += move;
-
-		}
-		else if (GLFW_PRESS == glfwGetKey(g_window, GLFW_KEY_E)) {
-
-			angule -= 0.1f;
-			matrix[0] = 1.0f;
-			matrix[5] = 1.0f;
-			matrix[10] = 1.0f;
-			matrix[12] = 0.0f;
-
-
-			matrix[0] = cos(angule);
-			matrix[1] = sin(angule);
-			matrix[4] = -sin(angule);
-			matrix[5] = cos(angule);
-
-			matrix[0] += scale;
-			matrix[5] += scale;
-			matrix[10] += scale;
-			matrix[12] += move;
+			trans = glm::translate(
+				trans,
+				glm::vec3(0.5f, 0.5f, 0.0f));
+			trans = glm::rotate(
+				trans,
+				glm::radians(-30.0f),
+				glm::vec3(0.0f, 0.0f, 1.0f)
+				);
+			trans = glm::translate(
+				trans,
+				glm::vec3(-0.5f, -0.5f, 0.0f));
+			
 		}
 		// put the stuff we've been drawing onto the display
 		glfwSwapBuffers(g_window);
